@@ -1,0 +1,54 @@
+/* Container principal para centralizar o conteúdo vertical e horizontalmente e preencher a tela */
+.container {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Preenche a tela toda */
+    width: 100%; /* Preenche a largura toda */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000; /* Fundo cinza claro */
+}
+
+/* Estilo do formulário */
+.formulario {
+    background-color: #ffffff; /* Fundo branco para o formulário */
+    padding: 40px; /* Mais espaçamento interno para um visual mais arejado */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+    color: #000000; /* Texto preto */
+}
+
+/* Estilo dos botões */
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons button {
+    background-color: #ffeb3b; /* Fundo amarelo */
+    color: #000000; /* Texto preto */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #fdd835; /* Amarelo um pouco mais escuro no hover */
+}
+
+/* Estilo para mensagens de erro */
+.error-message {
+    color: #ff4d4f; /* Vermelho suave para mensagens de erro */
+    text-align: center;
+}
+
+/* Estilo para os campos de entrada */
+.formulario .form-control {
+    border: 1px solid #000000; /* Borda preta para os campos de entrada */
+    border-radius: 4px;
+    padding: 10px;
+}
