@@ -22,6 +22,10 @@ export const getEventoUsuario = async (cd_pessoa: number): Promise<any> => {
   }
 }
 
+/**
+ * Extraí as músicas passdas por array
+ * @param dsArrMusicas
+ */
 export const obtemArrCdMusicas = async (dsArrMusicas: string) => {
   // Remove as chaves da string e remove espaços extras
   const cleanMusicas = dsArrMusicas.replace(/[{}]/g, '').trim();

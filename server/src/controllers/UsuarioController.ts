@@ -3,7 +3,7 @@ import { AppDataSource }     from '../data-source';
 import { Usuarios }          from '../models/Usuarios';
 import { Pessoas }           from '../models/Pessoas';
 import { Eventos }           from '../models/Eventos';
-import * as Helpers from '../services/Helpers';
+import * as Helpers          from '../services/Helpers';
 import dotenv                from 'dotenv';
 
 dotenv.config();
@@ -39,7 +39,7 @@ export const createUsuario = async (request: Request,  response: Response) => {
   catch (error)
   {
     return response.status(500).json({
-      error: "Erro Interno do Servidor",
+      error: 'Erro Interno do Servidor',
       message: 'Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.',
       details: error
     });
@@ -55,12 +55,14 @@ export const getUsuario = async (request: Request,  response: Response) => {
     if (objUsuario == null)
       return response.status(404).json({ message: 'Usuario nao encontrado' });
 
-    return response.status(200).json(objUsuario);
+    const objUsuarioAlterado = await Helpers.removeObjKey(objUsuario, 'ds_password');
+    console.log(objUsuarioAlterado);
+    return response.status(200).json(objUsuarioAlterado);
   }
   catch (error)
   {
     return response.status(500).json({
-      error: "Erro Interno do Servidor",
+      error: 'Erro Interno do Servidor',
       message: 'Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.',
       details: error
     });
@@ -75,12 +77,16 @@ export const getUsuarios = async (request: Request,  response: Response) => {
     if (listUsuarios.length <= 0)
       return response.status(404).json({ message: 'Nenhum usuario cadastrado' });
 
+    listUsuarios.forEach((obj) => {
+      return Helpers.removeObjKey(obj, 'ds_password');
+    });
+
     return response.status(200).json(listUsuarios);
   }
   catch (error)
   {
     return response.status(500).json({
-      error: "Erro Interno do Servidor",
+      error: 'Erro Interno do Servidor',
       message: 'Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.',
       details: error
     });
@@ -104,7 +110,7 @@ export const updateUsuario = async (request: Request,  response: Response) => {
   catch (error)
   {
     return response.status(500).json({
-      error: "Erro Interno do Servidor",
+      error: 'Erro Interno do Servidor',
       message: 'Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.',
       details: error
     });
@@ -119,9 +125,9 @@ export const deleteUsuario = async (request: Request,  response: Response) => {
     await AppDataSource.getRepository(Eventos).findOneBy({cd_usuario_responsavel: cd_pessoa}).then((eventoResponse) => {
       if (eventoResponse != null)
         return response.status(409).json({
-          error: "Conflito",
-          message: "O usuario nao pode ser removido. O usuario esta registrado como responsavel em um ou mais eventos. " +
-            "Por favor, exclua os eventos ou atribua novos responsaveis.",
+          error: 'Conflito',
+          message: 'O usuario nao pode ser removido. O usuario esta registrado como responsavel em um ou mais eventos. ' +
+            'Por favor, exclua os eventos ou atribua novos responsaveis.',
           details: eventoResponse
         });
     });
@@ -132,7 +138,7 @@ export const deleteUsuario = async (request: Request,  response: Response) => {
   catch (error)
   {
     return response.status(500).json({
-      error: "Erro Interno do Servidor",
+      error: 'Erro Interno do Servidor',
       message: 'Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.',
       details: error
     });

@@ -2,7 +2,7 @@ import { Request, Response }   from 'express';
 import { AppDataSource }       from '../data-source';
 import { GeneroMusicas }       from '../models/GeneroMusicas';
 import dotenv                  from 'dotenv';
-import { obtemMusicaByGenero } from "../services/MusicaService";
+import { obtemMusicaByGenero } from '../services/MusicaService';
 import * as Helpers            from '../services/Helpers';
 
 dotenv.config();
@@ -106,7 +106,7 @@ export const deleteGeneroMusica = async (request: Request,  response: Response) 
     if (objMusicaGenero != null)
     {
       return response.status(409).json({
-        error: "Conflito",
+        error: 'Conflito',
         message: 'O genero musical não pode ser excluido porque está associado a uma ou mais musicas.',
         details: objMusicaGenero
       });

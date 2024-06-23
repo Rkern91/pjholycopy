@@ -1,5 +1,5 @@
 import { AppDataSource } from '../data-source';
-import { Musicas }       from "../models/Musicas";
+import { Musicas }       from '../models/Musicas';
 
 /**
  * Verifica se um genero está ligado a uma música.

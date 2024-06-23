@@ -115,7 +115,7 @@ export const updateEvento = async (request: Request, response: Response) => {
       relations: ['musicas']
     });
 
-    objEventoFields.evento = Helpers.removeObjKey(objEventoFields.evento, 'cd_evento');
+    objEventoFields.evento = await Helpers.removeObjKey(objEventoFields.evento, 'cd_evento');
 
     if (!objEventoUpdate)
       return response.status(404).json({ message: 'Evento nao encontrado' });

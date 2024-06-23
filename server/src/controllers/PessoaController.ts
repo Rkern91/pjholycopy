@@ -4,9 +4,8 @@ import dotenv                from 'dotenv';
 import { Pessoas }           from '../models/Pessoas';
 import { Usuarios }          from '../models/Usuarios';
 import { getEventoUsuario }  from '../services/EventoService';
-import { removeObjKey }    from '../services/Helpers';
-import {Eventos} from "../models/Eventos";
-import {Musicas} from "../models/Musicas";
+import { removeObjKey }      from '../services/Helpers';
+import {Musicas}             from "../models/Musicas";
 
 dotenv.config();
 

@@ -23,7 +23,6 @@ export const doLogin = async (req: Request, res: Response) => {
       return res.status(400).json({error: 'Credenciais invalidas'})
 
     const token = jwt.sign({ds_username: ds_username}, process.env.TOKEN, {expiresIn: '30m'});
-
     res.status(200).json({auth: true, token: token}).send();
   }
   catch (error)

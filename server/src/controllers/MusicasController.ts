@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { AppDataSource }     from '../data-source';
 import dotenv                from 'dotenv';
 import { Musicas }           from '../models/Musicas';
-import { Eventos }           from "../models/Eventos";
+import { Eventos }           from '../models/Eventos';
 import * as Helpers          from '../services/Helpers';
 
 dotenv.config();
@@ -107,7 +107,7 @@ export const deleteMusica = async (request: Request, response: Response) => {
   {
     const cd_musica: number = +request.params.cd_musica;
 
-    // Verificar se a música está associada a algum evento
+    // Verifica se a música está associada a algum evento
     const eventosComMusica = await AppDataSource.getRepository(Eventos)
     .createQueryBuilder('eventos')
     .leftJoinAndSelect('eventos.musicas', 'musicas')
@@ -116,15 +116,14 @@ export const deleteMusica = async (request: Request, response: Response) => {
 
     if (eventosComMusica.length > 0) {
       return response.status(409).json({
-        error: "Conflito",
-        message: "A música não pode ser removida. A música está associada a um ou mais eventos. " +
-          "Por favor, remova os eventos ou remova a música do evento.",
+        error: 'Conflito',
+        message: 'A música não pode ser removida. A música está associada a um ou mais eventos. ' +
+          'Por favor, remova os eventos ou remova a música do evento.',
         details: eventosComMusica
       });
     }
 
     await AppDataSource.getRepository(Musicas).delete({cd_musica:  cd_musica});
-
     return response.status(200).json({ message: 'Musica excluida' });
   }
   catch (error)
