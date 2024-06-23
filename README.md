@@ -1,6 +1,5 @@
 # Projeto HolyCopy
-# Desenvolvimento na disciplina de Tópicos Especiais em Desenvolvimento de Software III a pedido da comunidade.
-
+# Desenvolvido na disciplina de Tópicos Especiais em Desenvolvimento de Software III a pedido da comunidade.
 
 Divido em client e server com suas configurações a parte. Acessar ambos diretórios e executar um "npm install" para baixar e instalar as dependencias do node.
 #Para rodar o /CLIENT
